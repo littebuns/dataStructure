@@ -6,14 +6,14 @@ import java.util.Scanner;
 /**
  * 队列
  */
-public class QueueArray {
+public class ArrayQueue {
 
     private int front;  //队列头
     private int rear;   //队列尾
     private int maxSize;    //数组的最大长度
     private int[] array;    //数组用于模拟队列
 
-    public QueueArray(int maxSize) {
+    public ArrayQueue(int maxSize) {
         this.maxSize = maxSize;
         array = new int[maxSize];
         front = -1;
@@ -59,7 +59,7 @@ public class QueueArray {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入队列的大小");
-        QueueArray queueArray = new QueueArray(scanner.nextInt());
+        ArrayQueue arrayQueue = new ArrayQueue(scanner.nextInt());
         System.out.println("e: 退出");
         System.out.println("a: 添加");
         System.out.println("g: 取出");
@@ -69,10 +69,10 @@ public class QueueArray {
             switch (next){
                 case "a":
                     System.out.println("输入要添加的元素");
-                    queueArray.addQueue(scanner.nextInt());
+                    arrayQueue.addQueue(scanner.nextInt());
                     break;
                 case "g":
-                    queueArray.getQueue();
+                    arrayQueue.getQueue();
                     break;
                 case "e":
                     flag = false;
