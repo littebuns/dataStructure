@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * 队列
@@ -56,13 +57,33 @@ public class QueueArray {
     }
 
     public static void main(String[] args) {
-        QueueArray queueArray = new QueueArray(5);
-        for (int i = 0; i < 5; i++) {
-            queueArray.addQueue(i);
-            queueArray.getQueue();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入队列的大小");
+        QueueArray queueArray = new QueueArray(scanner.nextInt());
+        System.out.println("e: 退出");
+        System.out.println("a: 添加");
+        System.out.println("g: 取出");
+        boolean flag = true;
+        while (flag){
+            String next = scanner.next();
+            switch (next){
+                case "a":
+                    System.out.println("输入要添加的元素");
+                    queueArray.addQueue(scanner.nextInt());
+                    break;
+                case "g":
+                    queueArray.getQueue();
+                    break;
+                case "e":
+                    flag = false;
+                    break;
+                default:
+                    break;
+
+            }
         }
-        queueArray.addQueue(6);
-        queueArray.getQueue();
+
+
     }
 
 
