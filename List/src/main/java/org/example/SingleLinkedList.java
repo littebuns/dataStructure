@@ -6,17 +6,18 @@ package org.example;
 public class SingleLinkedList {
 
     //头节点
-    private Node head = new Node(0, "", null);
+    private final Node head = new Node(0, "", null);
 
     /**
      * 不考虑no顺序的添加
-     * @param node
+     *
+     * @param node 添加的节点
      */
-    public void add(Node node){
+    public void add(Node node) {
         Node temp = head;
         Node next = temp.next;
-        while (true){
-            if(null == next){
+        while (true) {
+            if (null == next) {
                 temp.next = node;
                 break;
             }
@@ -26,28 +27,50 @@ public class SingleLinkedList {
 
     /**
      * 按顺序添加节点
+     *
      * @param node
      */
-    public void addByOrder(Node node){
+    public void addByOrder(Node node) {
         Node temp = head;
-        while (true){
+        while (true) {
             // 到最后也没有 则插入末尾
-            if(temp.next == null){
+            if (temp.next == null) {
                 temp.next = node;
                 break;
             }
             //如果下一个编号大于当前编号 则找到node的插入位置
-            if(temp.next.no> node.no){
+            if (temp.next.no > node.no) {
                 node.next = temp.next;
                 temp.next = node;
                 break;
             }
             temp = temp.next;
         }
-
     }
 
-    public void list(){
+    public void update(Node node) {
+        Node temp = head;
+        while (null != temp.next) {
+            if (temp.next.no == node.no) {
+                temp.next.name = node.name;
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+
+    public void delete(int id) {
+        Node temp = head;
+        while (null != temp.next) {
+            if (temp.next.no == id) {
+                temp.next = temp.next.next;
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+
+    public void list() {
         System.out.println("当前链表如下所示:");
         System.out.println(head);
         Node temp = head;
@@ -57,11 +80,32 @@ public class SingleLinkedList {
         }
     }
 
+    /**
+     * 单链表的反转
+     */
+    public SingleLinkedList reserve(SingleLinkedList linkedList) {
+        SingleLinkedList newLinkedList = new SingleLinkedList();
+        //使用一个辅助node 指向第一个node 可以理解为指针 用于遍历要反转的链表
+        Node temp = linkedList.head.next;
+        while (null != temp) {
+            //当前反转的节点
+            Node node = temp;
+            //插入到反转链表的head之后
+            node.next = newLinkedList.head.next;
+            newLinkedList.head.next = node;
+            //反转链表向后移动一格
+            temp = temp.next;
+        }
+        return newLinkedList;
+
+    }
+
     public static void main(String[] args) {
         Node node3 = new Node(3, "333");
         Node node5 = new Node(5, "555");
         Node node7 = new Node(7, "777");
         Node node9 = new Node(9, "999");
+        Node newNode = new Node(3, "newNode");
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.add(node3);
@@ -72,44 +116,19 @@ public class SingleLinkedList {
         orderList.addByOrder(node7);
         orderList.addByOrder(node5);
         orderList.addByOrder(node9);
-
+        orderList.update(newNode);
+        orderList.delete(3);
+        orderList.list();
+        //反转链表测试
+        System.out.println("开始反转链表");
+        orderList.reserve(orderList);
         orderList.list();
 
 
-
     }
-
 
 
 }
 
 
 
-/**
- * 节点
- */
-class Node{
-
-    public int no;
-    public String name;
-    public Node next;   //指向下一个节点
-
-    public Node(int no, String name, Node next) {
-        this.no = no;
-        this.name = name;
-        this.next = next;
-    }
-
-    public Node(int no, String name) {
-        this.no = no;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Node{" +
-                "no=" + no +
-                ", name='" + name + '\'' +
-                '}';
-    }
-}

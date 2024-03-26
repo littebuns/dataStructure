@@ -12,8 +12,8 @@ public class CircleQueue {
 
     private int front;  //队列头
     private int rear;   //队列尾
-    private int maxSize;    //数组的最大长度
-    private int[] array;    //数组用于模拟队列
+    private final int maxSize;    //数组的最大长度
+    private final int[] array;    //数组用于模拟队列
 
     public CircleQueue(int length) {
         this.maxSize = length;
