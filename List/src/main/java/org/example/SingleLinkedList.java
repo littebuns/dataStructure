@@ -86,15 +86,17 @@ public class SingleLinkedList {
     public SingleLinkedList reserve(SingleLinkedList linkedList) {
         SingleLinkedList newLinkedList = new SingleLinkedList();
         //使用一个辅助node 指向第一个node 可以理解为指针 用于遍历要反转的链表
-        Node temp = linkedList.head.next;
-        while (null != temp) {
-            //当前反转的节点
-            Node node = temp;
+        Node current = linkedList.head.next;
+        Node next = null;
+        while (null != current) {
+            //保存下一个节点的引用
+            next = current.next;
+
             //插入到反转链表的head之后
-            node.next = newLinkedList.head.next;
-            newLinkedList.head.next = node;
+            current.next = newLinkedList.head.next;
+            newLinkedList.head.next = current;
             //反转链表向后移动一格
-            temp = temp.next;
+            current = next;
         }
         return newLinkedList;
 
@@ -121,8 +123,8 @@ public class SingleLinkedList {
         orderList.list();
         //反转链表测试
         System.out.println("开始反转链表");
-        orderList.reserve(orderList);
-        orderList.list();
+        SingleLinkedList reserve = orderList.reserve(orderList);
+        reserve.list();
 
 
     }
