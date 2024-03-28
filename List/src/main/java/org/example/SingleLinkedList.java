@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Stack;
+
 /**
  * 单链表
  */
@@ -83,10 +85,10 @@ public class SingleLinkedList {
     /**
      * 单链表的反转
      */
-    public SingleLinkedList reserve(SingleLinkedList linkedList) {
+    public void reserve() {
         SingleLinkedList newLinkedList = new SingleLinkedList();
         //使用一个辅助node 指向第一个node 可以理解为指针 用于遍历要反转的链表
-        Node current = linkedList.head.next;
+        Node current = head.next;
         Node next = null;
         while (null != current) {
             //保存下一个节点的引用
@@ -98,7 +100,23 @@ public class SingleLinkedList {
             //反转链表向后移动一格
             current = next;
         }
-        return newLinkedList;
+        head.next = newLinkedList.head.next;
+    }
+
+    /**
+     * 逆序打印单链表
+     */
+    public void reservePrint(){
+        Node current = head.next;
+        Stack<Node> stack = new Stack<>();
+        while (null != current){
+            stack.add(current);
+            current = current.next;
+        }
+        while (!stack.isEmpty()){
+            Node pop = stack.pop();
+            System.out.println(pop);
+        }
 
     }
 
@@ -123,8 +141,11 @@ public class SingleLinkedList {
         orderList.list();
         //反转链表测试
         System.out.println("开始反转链表");
-        SingleLinkedList reserve = orderList.reserve(orderList);
-        reserve.list();
+        orderList.reserve();
+        orderList.list();
+        System.out.println("开始逆向打印链表");
+        orderList.reservePrint();
+
 
 
     }
