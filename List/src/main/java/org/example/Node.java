@@ -20,6 +20,10 @@ public class Node {
         this.name = name;
     }
 
+    public Node(int no) {
+        this.no = no;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
