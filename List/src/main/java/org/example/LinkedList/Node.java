@@ -1,4 +1,4 @@
-package org.example;
+package org.example.LinkedList;
 
 /**
  * 节点的定义

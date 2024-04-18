@@ -1,4 +1,4 @@
-package org.example;
+package org.example.LinkedList;
 
 /**
  * 约瑟夫问题

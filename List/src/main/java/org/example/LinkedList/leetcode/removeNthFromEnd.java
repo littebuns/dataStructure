@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package org.example.LinkedList.leetcode;
 
 /**
  * 19
@@ -45,7 +45,6 @@ public class removeNthFromEnd {
         node2.next = node3;
         ListNode node = removeNthFromEnd(node1, 1);
         System.out.println(node);
-
 
     }
 
